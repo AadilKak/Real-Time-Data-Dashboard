@@ -1,0 +1,19 @@
+{
+    "type": "module",
+    "dependencies": {
+        "express": "^5.2.1",
+        "ioredis": "^5.8.2",
+        "redis": "^5.10.0",
+        "ws": "^8.18.3"
+    },
+    "name": "relay-server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "websocket_relay.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}

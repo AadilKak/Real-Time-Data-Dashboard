@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # 1. The Redis Message Queue Service
+  redis:
+    image: redis:7-alpine
+    container_name: crypto-redis
+    # Command to ensure persistence is disabled (for clean demo)
+    command: redis-server --save "" --appendonly no
+    ports:
+      # Expose Redis for inspection/debugging if needed (optional)
+      - "6379:6379" 
+    restart: always
+
+  # 2. The Python Data Ticker Service
+  ticker:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    container_name: crypto-ticker
+    # Wait for Redis to be ready before starting
+    depends_on:
+      - redis
+    restart: always
+
+  # 3. The Node.js WebSocket Server Service
+  ws-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    container_name: crypto-ws-server
+    # Wait for Redis to be ready before starting
+    depends_on:
+      - redis
+    ports:
+      # Expose the WebSocket server to the host machine
+      - "8080:8080"
+    restart: always

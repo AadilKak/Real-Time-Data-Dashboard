@@ -1,0 +1,40 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* --- 2. DARK THEME ENFORCEMENT (FIXES WHITE BACKGROUND) --- */
+/* This ensures the entire page background is dark grey */
+body {
+    background-color: #111827; /* Tailwind's dark gray for background */
+    color: rgba(255, 255, 255, 0.9); /* Default text color */
+    min-height: 100vh;
+}
+
+/* --- 3. CUSTOM ANIMATIONS (BOX SHADOW RECOMMENDED) --- */
+
+/* Keyframes for a green glowing pulse (price up) */
+@keyframes flash-green {
+    /* Start: Bright green shadow */
+    0% { box-shadow: 0 0 10px 2px #4ade80; } 
+    /* End: Shadow is removed */
+    100% { box-shadow: none; }
+}
+
+/* Keyframes for a red glowing pulse (price down) */
+@keyframes flash-red {
+    /* Start: Bright red shadow */
+    0% { box-shadow: 0 0 10px 2px #f87171; } 
+    /* End: Shadow is removed */
+    100% { box-shadow: none; }
+}
+
+/* Apply the animation using the classes */
+.flash-green {
+    /* The animation will run once and stop */
+    animation: flash-green 0.2s ease-out;
+}
+
+.flash-red {
+    animation: flash-red 0.2s ease-out;
+}
