@@ -67,9 +67,9 @@ The dashboard should load, and the Status indicator should turn Connected. You s
 ## Stopping the Application
 
 To stop the backend services run by Docker, return to the terminal running `docker compose up` and press:
-
+```
 Ctrl + C
-
+```
 Then, optionally run:
 ```
 docker compose down
